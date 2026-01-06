@@ -42,49 +42,6 @@ cd /mnt/data
 ls -la
 ```
 
-## Best Practices
-
-### Organize Your Data Drive
-
-```
-/mnt/data/
-├── datasets/
-│   ├── imagenet/
-│   └── custom-dataset/
-├── checkpoints/
-│   └── experiment-001/
-├── outputs/
-│   └── results/
-└── models/
-    └── pretrained/
-```
-
-### Large File Transfers
-
-For very large files or datasets, consider:
-
-- **rsync over SSH**: For resumable transfers
-  ```bash
-  rsync -avz --progress user@ssh001.pandoro.today:/mnt/data/large-file.tar.gz ./
-  ```
-
-- **Cloud storage**: Upload to S3, GCS, or similar, then download locally
-  ```bash
-  # Example with AWS CLI (if installed)
-  aws s3 cp /mnt/data/results.tar.gz s3://your-bucket/
-  ```
-
-### Save Checkpoints Regularly
-
-Store model checkpoints on the data drive:
-
-```python
-# Example in PyTorch
-torch.save(model.state_dict(), '/mnt/data/checkpoints/model_epoch_10.pt')
-```
-
-This protects your work and makes it easy to download later.
-
 ## Uploading Files
 
 ### Via VSCode
